@@ -1,8 +1,8 @@
 import React from "react";
 
 const InfoContainer = ({icon, title, desc1, desc2}) => {
-    const description1 = desc1.replace(/<p>/, '').replace(/<\/p>/, '');
-    const description2 = desc2.replace(/<p>/, '').replace(/<\/p>/, '');
+    const description1 = desc1.replace(/<p>/g, '').replace(/<\/p>/g, '');
+    const description2 = desc2.replace(/<p>/g, '').replace(/<\/p>/g, '');
 
     return(
         <div className="space-y-5 text-sm font-thin">
