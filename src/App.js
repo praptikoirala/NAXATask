@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 
-function App() {
+import { fetchData } from "./redux/slice/data-slice";
+
+import ServiceHead from "./components/service-head";
+import ServiceBody from "./components/service-body";
+
+const App = () => {
+  const { data } = useSelector((state) => state.data);
+  const dispatch = useDispatch();
+
+  const sortedDataArray = [...data].sort((a,b) => a.service_order - b.service_order);
+
+
+  useEffect(() => {
+    dispatch(fetchData());
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="text-text-primary">
+      <ServiceHead info={sortedDataArray}/>
+      <ServiceBody info={sortedDataArray}/>
     </div>
   );
 }
